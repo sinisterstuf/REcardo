@@ -46,14 +46,14 @@ t.getListsOnBoard(board, function(e, lists) {
 
   l(lists)
 
-  for (var i in lists) {
-    if (lists[i].name.match(/incoming/i)) {
-      inList = lists[i].id
+  lists.forEach(function(list) {
+    if (list.name.match(/incoming/i)) {
+      inList = list.id
     }
-    if (lists[i].name.match(/considering/i)) {
-      outList = lists[i].id
+    if (list.name.match(/considering/i)) {
+      outList = list.id
     }
-  }
+  })
 
   l("in", inList)
   l("out", outList)
@@ -69,8 +69,7 @@ t.getListsOnBoard(board, function(e, lists) {
 function fillOutCard(inList, outList) {
 
   t.getCardsOnList(inList, function(e, cards) {
-    for (var i in cards) {
-      var card = cards[i]
+    cards.forEach(function(card) {
 
       if (card.name.match(/#[0-9]+/)) {
         // l(card)
@@ -96,7 +95,7 @@ function fillOutCard(inList, outList) {
         })
 
       }
-    }
+    })
   })
 
 }
