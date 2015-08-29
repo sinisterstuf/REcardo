@@ -1,0 +1,9 @@
+{
+  "loadEagerly": [
+    "./cardHandler.js",
+    "./ingatlan.js"
+  ],
+  "plugins": {
+    "node": {}
+  }
+}
