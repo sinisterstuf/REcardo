@@ -44,6 +44,11 @@ t.getListsOnBoard(board, function(e, lists) {
   var inList
   var outList
 
+  if (typeof(lists) == 'string') {
+    l('could not get lists for board')
+    return 1
+  }
+
   l(lists)
 
   lists.forEach(function(list) {
