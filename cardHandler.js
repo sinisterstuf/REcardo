@@ -20,6 +20,24 @@ function logOrErr(e, x) {
   }
 }
 
+/*
+ * Add attachment manually because Trello client doesn't support this
+ * TODO: ideally this sould be inside the Trello prototype
+ *
+ * @cardId Trello card to receive attachment
+ * @url web URL to photo/file to attach
+ */
+function addAttachment(cardId, url) {
+  request.post(
+    t.uri + '/1/cards/' + cardId + '/attachments',
+    {form:{
+      key: t.key,
+      token: t.token,
+      url: url
+    }},
+    logOrErr // TODO this gives way too much output
+  )
+}
 
 t.getListsOnBoard(board, function(e, lists) {
 
@@ -69,21 +87,11 @@ function fillOutCard(inList, outList) {
           // actually update the card info
           t.updateCardName(card.id, name, logOrErr)
           t.updateCardDescription(card.id, house.desc, logOrErr)
+          addAttachment(card.id, house.photo)
+
           // TODO: instead of moving the card to a list, it would be better if
           // this script would handle cards in-place in any list
           // t.updateCardList(card.id, list, logOrErr)
-
-          // add attachment manually because Trello client doesn't support this
-          request.post(
-            t.uri + '/1/cards/' + card.id + '/attachments',
-            {form:{
-              key: t.key,
-              token: t.token,
-              url: house.photo
-            }},
-            logOrErr
-          )
-
 
         })
 
