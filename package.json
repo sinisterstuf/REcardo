@@ -11,6 +11,6 @@
   "dependencies": {
     "cheerio": "^0.19.0",
     "request": "^2.61.0",
-    "trello": "^0.3.0"
+    "trello": "kblok/trello#663104e383"
   }
 }
