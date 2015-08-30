@@ -1,8 +1,8 @@
 {
-  "name": "recardo",
+  "name": "REcardo",
   "version": "1.0.0",
   "description": "Automatic Real Estate meta-data for Trello cards",
-  "main": "app.js",
+  "main": "cardHandler.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
