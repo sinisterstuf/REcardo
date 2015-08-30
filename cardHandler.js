@@ -41,9 +41,6 @@ function addAttachment(cardId, url) {
 
 t.getListsOnBoard(board, function(e, lists) {
 
-  var inList
-  var outList
-
   if (typeof(lists) == 'string') {
     l('could not get lists for board')
     return 1
@@ -52,28 +49,17 @@ t.getListsOnBoard(board, function(e, lists) {
   l(lists)
 
   lists.forEach(function(list) {
-    if (list.name.match(/incoming/i)) {
-      inList = list.id
-    }
-    if (list.name.match(/considering/i)) {
-      outList = list.id
-    }
+    findCards(list.id)
   })
-
-  l("in", inList)
-  l("out", outList)
-
-  if (typeof(inList) != 'undefined' && typeof(outList) != 'undefined') {
-    fillOutCard(inList, outList)
-  } else {
-    l("couldn't set some list, aborting")
-  }
 
 })
 
-function fillOutCard(inList, outList) {
+function findCards(list) {
 
-  t.getCardsOnList(inList, function(e, cards) {
+  t.getCardsOnList(list, function(e, cards) {
+
+    l('cards', cards)
+
     cards.forEach(function(card) {
 
       if (card.name.match(/#[0-9]+/)) {
@@ -92,10 +78,6 @@ function fillOutCard(inList, outList) {
           t.updateCardName(card.id, name, logOrErr)
           t.updateCardDescription(card.id, house.desc, logOrErr)
           addAttachment(card.id, house.photo)
-
-          // TODO: instead of moving the card to a list, it would be better if
-          // this script would handle cards in-place in any list
-          // t.updateCardList(card.id, list, logOrErr)
 
         })
 
