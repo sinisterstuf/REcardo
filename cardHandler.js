@@ -41,12 +41,17 @@ function addAttachment(cardId, url) {
 
 t.getListsOnBoard(board, function(e, lists) {
 
-  if (typeof(lists) == 'string') {
-    l('could not get lists for board')
+  if (e) {
+    l('error:', e)
     return 1
   }
 
-  l(lists)
+  if (typeof(lists) == 'string') {
+    l('could not get lists for board')
+    return 2
+  }
+
+  l('lists', lists)
 
   lists.forEach(function(list) {
     findCards(list.id)
@@ -57,6 +62,16 @@ t.getListsOnBoard(board, function(e, lists) {
 function findCards(list) {
 
   t.getCardsOnList(list, function(e, cards) {
+
+    if (e) {
+      l('error:', e)
+      return 1
+    }
+
+    if (typeof(cards) == 'string') {
+      l('could not get cards for list')
+      return 2
+    }
 
     l('cards', cards)
 
