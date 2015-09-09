@@ -54,14 +54,14 @@ t.getListsOnBoard(board, function(e, lists) {
   l('lists', lists)
 
   lists.forEach(function(list) {
-    findCards(list.id)
+    findCards(list)
   })
 
 })
 
 function findCards(list) {
 
-  t.getCardsOnList(list, function(e, cards) {
+  t.getCardsOnList(list.id, function(e, cards) {
 
     if (e) {
       l('error:', e)
