@@ -1,3 +1,6 @@
+// TODO: someday it'd be good to refactor this:
+module.exports.main = actuallyDoTheStuff
+
 var Trello = require('trello')
 var ingatlan = require('./ingatlan.js')
 var request = require('request')
@@ -20,25 +23,27 @@ function logOrErr(e, x) {
   }
 }
 
-t.getListsOnBoard(board, function(e, lists) {
+function actuallyDoTheStuff() {
+  t.getListsOnBoard(board, function(e, lists) {
 
-  if (e) {
-    l('error:', e)
-    return 1
-  }
+    if (e) {
+      l('error:', e)
+      return 1
+    }
 
-  if (typeof(lists) == 'string') {
-    l('could not get lists for board')
-    return 2
-  }
+    if (typeof(lists) == 'string') {
+      l('could not get lists for board')
+      return 2
+    }
 
-  l('lists', lists)
+    l('lists', lists)
 
-  lists.forEach(function(list) {
-    findCards(list)
+    lists.forEach(function(list) {
+      findCards(list)
+    })
+
   })
-
-})
+}
 
 function findCards(list) {
 

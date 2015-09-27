@@ -1,6 +1,9 @@
 var express = require('express')
 var app = express()
 
+// actual work is in this:
+var cardHandler = require('./cardHandler')
+
 app.set('port', (process.env.PORT || 5000));
 
 app.get('/', function (req, res) {
@@ -22,6 +25,10 @@ app.get('/', function (req, res) {
         }
     }
 
+    // actual work
+    cardHandler.main()
+
+    // a positive response
     res.send('REcardo')
 
 })
