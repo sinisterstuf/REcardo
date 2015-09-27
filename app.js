@@ -6,7 +6,14 @@ var cardHandler = require('./cardHandler')
 
 app.set('port', (process.env.PORT || 5000));
 
-app.get('/', function (req, res) {
+app.get('/', actualWork)
+app.post('/', actualWork)
+
+app.listen(app.get('port'), function() {
+    console.log('REcardo is running on port', app.get('port'));
+});
+
+function actualWork(req, res) {
 
     console.log(req)
 
@@ -33,8 +40,4 @@ app.get('/', function (req, res) {
     // a positive response
     res.send('REcardo')
 
-})
-
-app.listen(app.get('port'), function() {
-    console.log('REcardo is running on port', app.get('port'));
-});
+}
