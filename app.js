@@ -6,16 +6,9 @@ var cardHandler = require('./cardHandler')
 
 app.set('port', (process.env.PORT || 5000));
 
-app.get('/', actualWork)
-app.post('/', actualWork)
+app.get('/', function(req, res) {
 
-app.listen(app.get('port'), function() {
-    console.log('REcardo is running on port', app.get('port'));
-});
-
-function actualWork(req, res) {
-
-    console.log(req)
+    // TODO: shiny web page
 
     var trello; // will contain auth stuff
     var reqs = [
@@ -34,10 +27,21 @@ function actualWork(req, res) {
         }
     }
 
+    res.send('REcardo')
+
+})
+
+app.post('/', function(req, res) {
+    // TODO: error handling
+
     // actual work
     cardHandler.main()
 
     // a positive response
-    res.send('REcardo')
+    res.send('OK')
 
-}
+})
+
+app.listen(app.get('port'), function() {
+    console.log('REcardo is running on port', app.get('port'));
+});
