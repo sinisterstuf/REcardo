@@ -8,6 +8,8 @@ app.set('port', (process.env.PORT || 5000));
 
 app.get('/', function (req, res) {
 
+    console.log(req)
+
     var trello; // will contain auth stuff
     var reqs = [
         'TRELLO_KEY',
