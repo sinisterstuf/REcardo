@@ -36,8 +36,6 @@ function actuallyDoTheStuff() {
       return 2
     }
 
-    l('lists', lists)
-
     lists.forEach(function(list) {
       findCards(list)
     })
@@ -59,12 +57,9 @@ function findCards(list) {
       return 2
     }
 
-    l('cards', cards)
-
     cards.forEach(function(card) {
 
       if (card.name.match(/#[0-9]+/)) {
-        // l(card)
 
         houseId = (card.name.match(/#[0-9]+/)[0]).substring(1)
         l(houseId)
