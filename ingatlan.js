@@ -23,7 +23,7 @@ function scrape(id, callback) {
     })
 
     // this is just to make `name`'s construction more readable
-    var price = data[0]
+    var price = $('.parameter-price .parameter-value')
     var inner_size = data[1]
     var outer_size = data[2]
     var rooms = data[3]
