@@ -63,10 +63,10 @@ function findCards(list) {
 
     cards.forEach(function(card) {
 
-      if (card.name.match(/#[0-9]+/)) {
+      if (card.name.match(/[0-9]{8,}/)) {
         // l(card)
 
-        houseId = (card.name.match(/#[0-9]+/)[0]).substring(1)
+        houseId = card.name.match(/[0-9]{8,}/)[0]
         l(houseId)
 
         l('scraping:', houseId)
@@ -74,7 +74,7 @@ function findCards(list) {
           l(house)
 
           // swap the #12345 for useful metadata
-          var name = card.name.replace(/#[0-9]+/, house.name)
+          var name = card.name.replace(/[0-9]{8,}/, house.name)
 
           // actually update the card info
           t.updateCardName(card.id, name, logOrErr)
