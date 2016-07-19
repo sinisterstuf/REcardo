@@ -15,21 +15,13 @@ function scrape(id, callback) {
       return e
     }
 
-    // get metadata for name
-    var data = []
-    var raw = $('.importantInformations .importantInformation')
-    raw.each(function() {
-      data.push($(this).text().match(/[0-9.]+/)[0])
-    })
-
     // this is just to make `name`'s construction more readable
-    var price = $('.parameter-price .parameter-value')
-    var inner_size = data[1]
-    var outer_size = data[2]
-    var rooms = data[3]
+    var price = $('.parameter-price .parameter-value').text()
+    var size = $('.parameter-area-size .parameter-value').text()
+    var rooms = $('.parameter-room .parameter-value').text()
 
     // construct card name from metadata
-    var name = price + "M " + inner_size + "+" + outer_size + "m² /" + rooms
+    var name = price + " " + size + " / " + rooms
 
     // "comment text" with link prepended for card description
     var desc = uri + "\n\n" + $('#commentText').text() +
