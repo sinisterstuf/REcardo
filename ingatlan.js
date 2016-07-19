@@ -24,12 +24,13 @@ function scrape(id, callback) {
     var name = price + " " + size + " / " + rooms
 
     // "comment text" with link prepended for card description
-    var desc = uri + "\n\n" + $('#commentText').text() +
+    var desc = uri + "\n\n" + $('.details .long-description').text() +
       "\n\n" + desc
 
     // first photo's URL for attachment
-    var photo = $('#details-box-pictures .highslide-pic.big-index img')
-      .attr('src')
+    var photo = $('.listing-image .image')
+      .css('background-image')
+      .replace('url(','').replace(')','')
 
     // call back with data
     if (error) {
