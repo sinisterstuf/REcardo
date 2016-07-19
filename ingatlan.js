@@ -30,7 +30,7 @@ function scrape(id, callback) {
     // first photo's URL for attachment
     var photo = $('.listing-image .image')
       .css('background-image')
-      .replace('url(','').replace(')','')
+      .replace("url('","").replace("')","")
 
     // call back with data
     if (error) {
