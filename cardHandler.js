@@ -69,6 +69,7 @@ function findCards(list) {
         houseId = (card.name.match(/#[0-9]+/)[0]).substring(1)
         l(houseId)
 
+        l('scraping:', houseId)
         ingatlan.scrape(houseId, function(e, house) {
           l(house)
 
