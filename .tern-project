@@ -1,9 +1,12 @@
 {
   "loadEagerly": [
+    "./app.js",
     "./cardHandler.js",
     "./ingatlan.js"
   ],
   "plugins": {
-    "node": {}
+    "node": {},
+    "node_resolve": {},
+    "complete_strings": {}
   }
 }
